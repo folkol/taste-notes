@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+var sys = require('sys'),
+    path = require('path'),
+    argv = require('optimist').argv;
+
+var help = [
+    "usage: server [options]",
+    "",
+    "Runs the server at the appropriate stage in development",
+    "",
+    "options:",
+    "  -p             Port that you want the home server to run on      [8000]",
+    "  -t, --target   Target stage for pinpoint development             [00getting-started]",
+    "  -s, --setup    Indicates we should configure the database first  [false]",
+    "  -a, --auth     user:password combo to use for HTTP Basic Auth    [none]",
+    "  -h, --help     You're staring at it"
+].join('\n');
+
+var target, options = {
+  port: argv.p || 8000,
+  setup: argv.s || argv.setup || false,
+  basicAuth: argv.a || argv.auth || null
+};
+
+target = argv.t || argv.target || '00getting-started';
+
+var server = require('../lib/server');
+server.start(options, function (err, server) {
+  if (err) {
+    return sys.puts('Error starting pinpoint server: ' + err.message);
+  }
+
+  return sys.puts('Server listening for ' + target + ' on http://127.0.0.1:' + options.port);
+});
+

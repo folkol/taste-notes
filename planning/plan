@@ -1,0 +1,32 @@
+arch:
+ - server (REST) backed by persistent storage
+ - js/css/html5! frontend
+ - some sort of auth/session handling.
+ - autocompletion. 
+ - internationalization?
+
+domain objects:
+ Entry:
+  - Distillery
+  - Region
+  - Name
+  - Cask
+  - Batch
+  - Age
+  - Distilled date
+  - Bottled date
+  - Bottle number  
+  - ABV (procenten!!!)
+  - Note
+  - Score (100 scale)
+  - Photos
+  - Author
+
+Plan for today!
+ - node.js with mongodb hello world!
+ - get Entry from stuff in db
+ - create entry from node in mongodb.
+ - present entry on page using AJAX.
+ 
+ 
+
